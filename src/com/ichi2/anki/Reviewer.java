@@ -255,7 +255,7 @@ public class Reviewer extends AnkiActivity {
     /**
      * Variables to hold layout objects that we need to update or handle events for
      */
-    private View mMainLayout;
+    public View mMainLayout;
     private View mLookUpIcon;
     private FrameLayout mCardContainer;
     private WebView mCard;

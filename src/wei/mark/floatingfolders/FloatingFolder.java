@@ -45,6 +45,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ichi2.anki.R;
+import com.ichi2.anki.Reviewer;
 
 public final class FloatingFolder extends StandOutWindow {
 	private static final int APP_SELECTOR_ID = -2;
@@ -52,7 +53,7 @@ public final class FloatingFolder extends StandOutWindow {
 	private static final int APP_SELECTOR_CODE = 2;
 	private static final int APP_SELECTOR_FINISHED_CODE = 3;
 	public static final int STARTUP_CODE = 4;
-
+	Reviewer mReviewer;
 	PackageManager mPackageManager;
 	WindowManager mWindowManager;
 
@@ -75,7 +76,8 @@ public final class FloatingFolder extends StandOutWindow {
 
 		mPackageManager = getPackageManager();
 		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-
+		mReviewer = new Reviewer();
+		
 		iconSize = (int) getResources().getDimension(
 				android.R.dimen.app_icon_size);
 		squareWidth = iconSize + 8 * 8;
@@ -106,6 +108,7 @@ public final class FloatingFolder extends StandOutWindow {
 		if (APP_SELECTOR_ID == id) {
 			final View view = inflater.inflate(R.layout.app_selector, frame,
 					true);
+			mReviewer.mMainLayout = view.findViewById(R.id.main_layout);
 			final ListView listView = (ListView) view.findViewById(R.id.list);
 			final List<ActivityInfo> apps = new ArrayList<ActivityInfo>();
 
