@@ -14,18 +14,32 @@
 
 package com.ichi2.anki;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+
+import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
+import org.achartengine.chart.BarChart;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import wei.mark.floatingfolders.*;
+import wei.mark.standout.StandOutWindow;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
@@ -59,22 +73,6 @@ import com.ichi2.themes.StyledDialog;
 import com.ichi2.themes.StyledOpenCollectionDialog;
 import com.ichi2.themes.StyledProgressDialog;
 import com.ichi2.themes.Themes;
-
-import org.achartengine.ChartFactory;
-import org.achartengine.GraphicalView;
-import org.achartengine.chart.BarChart;
-import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYSeriesRenderer;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 public class StudyOptionsFragment extends Fragment {
 
@@ -129,6 +127,7 @@ public class StudyOptionsFragment extends Fragment {
      */
     private View mStudyOptionsView;
     private Button mButtonStart;
+    private Button mButtonPopup;
     private Button mFragmentedCram;
 //    private Button mButtonUp;
 //    private Button mButtonDown;
@@ -186,6 +185,9 @@ public class StudyOptionsFragment extends Fragment {
     
     private boolean mFragmented;
 
+    public static StandOutWindow mStandOutWindow = null; 
+    
+    FloatingFoldersLauncher floating = new FloatingFoldersLauncher();
     /**
      * Callbacks for UI events
      */
@@ -195,7 +197,14 @@ public class StudyOptionsFragment extends Fragment {
         	Collection col = AnkiDroidApp.getCol();
 //            long timeLimit = 0;
             switch (v.getId()) {
+
+            	  case R.id.studyoptions_popup:
+            		  Log.i(AnkiDroidApp.TAG, "popup 1");
+            		  openPopup();
+            		  return;
+            		  
                 case R.id.studyoptions_start:
+                    //Log.i(AnkiDroidApp.TAG, "start 1");
                     openReviewer();
                     return;
 //                case R.id.studyoptions_limitup:
@@ -517,7 +526,13 @@ public class StudyOptionsFragment extends Fragment {
         }
     }
 
-
+    private void openPopup() {
+    	 Log.i(AnkiDroidApp.TAG, "anki studyoptions");    
+        StandOutWindow.closeAll(getActivity(), FloatingFolder.class);
+		 FloatingFolder.showFolders(getActivity());
+		 //getActivity().finish();
+    }
+    
     private void openReviewer() {
         mDontSaveOnStop = true;
         Intent reviewer = new Intent(getActivity(), Reviewer.class);
@@ -587,6 +602,7 @@ public class StudyOptionsFragment extends Fragment {
         mTextDeckName = (TextView) mStudyOptionsView.findViewById(R.id.studyoptions_deck_name);
         mTextDeckDescription = (TextView) mStudyOptionsView.findViewById(R.id.studyoptions_deck_description);
         mButtonStart = (Button) mStudyOptionsView.findViewById(R.id.studyoptions_start);
+        mButtonPopup = (Button) mStudyOptionsView.findViewById(R.id.studyoptions_popup);
 //        mButtonUp = (Button) mStudyOptionsView.findViewById(R.id.studyoptions_limitup);
 //        mButtonDown = (Button) mStudyOptionsView.findViewById(R.id.studyoptions_limitdown);
 //        mToggleLimitToggle = (ToggleButton) mStudyOptionsView.findViewById(R.id.studyoptions_limittoggle);
@@ -652,6 +668,7 @@ public class StudyOptionsFragment extends Fragment {
         mDeckChart = (LinearLayout) mStudyOptionsView.findViewById(R.id.studyoptions_chart);
 
         mButtonStart.setOnClickListener(mButtonClickListener);
+        mButtonPopup.setOnClickListener(mButtonClickListener);
 //        mButtonUp.setOnClickListener(mButtonClickListener);
 //        mButtonDown.setOnClickListener(mButtonClickListener);
 //        mToggleLimitToggle.setOnClickListener(mButtonClickListener);

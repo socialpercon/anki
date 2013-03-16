@@ -20,6 +20,12 @@
 -->
 <resources>
 
+<!--Popup-->
+<string name="window_icon">Window icon</string>
+<string name="hide">Hide</string>
+<string name="corner">Corner</string>
+<string name="maximize">Maximize</string>
+
 <string name="CardEditorCancelButton">Cancel</string>
 <string name="CardEditorSaveButton">Save</string>
 <string name="CardEditorLaterButton">Later</string>

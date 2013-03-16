@@ -32,6 +32,7 @@
   <string name="studyoptions_total_cards">전체 카드:</string>
   <string name="studyoptions_eta">예상 시간(분):</string>
   <string name="studyoptions_start">복습시작</string>
+  <string name="studyoptions_popup">팝업모드</string>
   <string name="show_answer">답 보기</string>
   <string name="ease1_successive">다시</string>
   <string name="ease2_successive">어려움</string>

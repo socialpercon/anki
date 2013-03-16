@@ -30,13 +30,14 @@
     </instrumentation>
 
     <uses-sdk
-        android:minSdkVersion="4"
+        android:minSdkVersion="5"
         android:targetSdkVersion="11" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!--
 	<uses-permission android:name="android.permission.BLUETOOTH" />
         <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -225,7 +226,8 @@
         -->
 
         <service android:name="com.ichi2.widget.WidgetContentService" />
-
+		 <service android:name="wei.mark.floatingfolders.FloatingFolder" >
+        </service>
         <receiver
             android:name="com.ichi2.anki.receiver.SdCardReceiver"
             android:enabled="true"

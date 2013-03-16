@@ -36,7 +36,7 @@
 <string name="studyoptions_total_cards">Total cards:</string>
 <string name="studyoptions_eta">Estimated time (min):</string>
 <string name="studyoptions_start">Start Reviewing</string>
-
+<string name="studyoptions_popup">Popup Mode</string>
 <!-- DeckPicker.java -->
 <plurals name="deckpicker_title">
   <item quantity="one">1 of %2$d due (%3$s)</item>

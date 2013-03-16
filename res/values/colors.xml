@@ -26,6 +26,8 @@
 	<color name="card_browser_suspended">#646D7E</color>
 
 	    
+    <color name="ics_blue">#33b5e5</color>
+    
    	<color name="statistics_due_young_cards">#7c7</color>
 	<color name="statistics_due_mature_cards">#070</color>
 	    
